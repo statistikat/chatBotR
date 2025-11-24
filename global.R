@@ -63,17 +63,19 @@ Sys.setenv("llm_caching_db" = fs::path(getwd(), config$cache_db))
 #' @param provider Character. "local" or "sspcloud".
 #' @return Vector of model IDs.
 get_models <- function(provider = "llm") {
-  res <- llm_request_default(
+  err <- try(res <- llm_request_default(
     endpoint = "models",
     body_data = NULL,
     provider = provider,
     method = "GET"
-  )
-  sort(res$data$id)
+  ))
+  if(!inherits(err,"try-error"))
+    return(sort(res$data$id))
+  return(NULL)
 }
 
 # Define available models manually to maintain specific order/curation
 available_models <- list(
   "llm" = get_models(provider = "llm"),
-  "gcs" = c("gemini-2.5-flash")
+  "gcs" = c("gemini-2.5-flash","gemini-3-pro-preview")
 )
