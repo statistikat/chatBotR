@@ -34,7 +34,10 @@ Sys.setenv("GCS_SITE" = "statistik.at") # restricted to use a site
 Sys.setenv("LLM_CACHING_DB" = "file-upload-cache.rds");
 
 # Overwrite these Env-Vars from .Renviron
-try(readRenviron(".Renviron"))
+tryCatch(
+  expr = readRenviron(".Renviron"),
+  error = function(e) NULL
+)
 
 # Load and validate environment variables
 config <- list(

@@ -83,7 +83,7 @@ server <- function(input, output, session) {
     }
     
     dbg$request_google_search <- res_google
-    progress$set(value = 3, message = "[{llm_ts()}] Search complete")
+    progress$set(value = 3, message = glue::glue("[{llm_ts()}] Search complete"))
     
     # 3. Prepare Files (Download & Upload to LLM)
     files <- list()
