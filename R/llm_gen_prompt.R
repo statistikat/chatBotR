@@ -103,8 +103,8 @@ llm_gen_prompt <- function(files, meta, provider, lang = "en") {
 
   if (provider != "gcs") { 
     DocumentType <- "Dateien (z. B. PDFs, HTML)" 
-    Dateireferenz <- "Hier die Metadaten der hochgeladenen Dateien:"
-    
+    Dateireferenz <- t$files_intro
+
     # Extract IDs and Names safely
     file_ids <- sapply(files, function(x) x$id)
     file_names <- sapply(files, function(x) x$filename)
