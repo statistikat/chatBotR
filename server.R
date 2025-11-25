@@ -117,10 +117,10 @@ server <- function(input, output, session) {
     params(para)
     dbg$params <- para
     
-    progress$set(value = 7, message = "[{llm_ts()}] Prompt generated")
+    progress$set(value = 7, message = glue::glue("[{llm_ts()}] Prompt generated"))
     
     # 5. Final LLM Request
-    progress$set(value = 8, message = "[{llm_ts()}] Waiting for LLM answer...")
+    progress$set(value = 8, message = glue::glue("[{llm_ts()}] Waiting for LLM answer ('thinking') ..."))
     
     out <- tryCatch(
       expr = llm_request(
